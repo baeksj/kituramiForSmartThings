@@ -3,6 +3,9 @@ DTH for kiturami multiroom boiler in local http resverse proxy environment
 
 This function is only tested by myself.
 
+![image](https://user-images.githubusercontent.com/1823785/118262153-6e8f4a80-b4ef-11eb-89ba-9a0faff8b106.png)
+
+
 귀뚜라미 각방제어 시스템 보일러를 위한 SmartThings DTH 입니다.
 귀뚜라미 KRB API 는 SmartThings Cloud 를 통한 연결이 허용되지 않고 있는 관계로
 이 기능은 Local 환경의 Reverse proxy 를 경유하여 KRB API 에 접속 합니다.
@@ -40,6 +43,9 @@ SmartThings IDE 에서 DTH 를 설치 합니다.
 SmartThings IDE 에서 Device 를 직접 추가 합니다.
 Device Handler 는 위에서 추가한 "Kiturami-multiroom-boiler" 를 선택 합니다.
 
+![image](https://user-images.githubusercontent.com/1823785/118262222-8c5caf80-b4ef-11eb-8b13-ad2b3116af5f.png)
+
+
 ## 4. Device 환경 설정
 스마트폼 SmartThings 앱을 통해 추가된 보일러 Device 를 확인합니다.
 설정으로 이동하여 설정 값을 입력 합니다.
@@ -47,6 +53,9 @@ IP: Docker 가 실행되는 서버IP : Port ex> 192.168.0.100:8989
 userId: 귀뚜라미 원격 제어를 위한 앱 로그인 ID 를 입력 합니다.
 password: 귀뚜라미 원격 제어를 위한 앱 로그인 비밀번호 를 입력 합니다.
 away/off 선택: SmmartThings 를 통한 switch off action 발생시 보일러를 전원종료 할지 외출모드 를 할지 선택 합니다.
+![image](https://user-images.githubusercontent.com/1823785/118262091-5dded480-b4ef-11eb-9def-8edf09191c5e.png)
+![image](https://user-images.githubusercontent.com/1823785/118262117-633c1f00-b4ef-11eb-9a6b-1294a7986f36.png)
+
 
 ## 5. 사용
 귀뚜라미 KRB API 는 연속 메시지가 다수 발생하면 일시적으로 동작이 멈추는 현상이 자주 발생합니다.
