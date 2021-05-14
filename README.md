@@ -64,3 +64,5 @@ away/off 선택: SmmartThings 를 통한 switch off action 발생시 보일러�
 귀뚜라미 KRB API 는 연속 메시지가 다수 발생하면 일시적으로 동작이 멈추는 현상이 자주 발생합니다.
 이를 막기위해서 매 Command 실행 후 결과 상태조회시 Alive 체크를 하는데 이 API 의 서버 response 가 1-2초 정도 걸립니다.
 사용중 답답해도 어쩔수 없습니다.
+
+## SmartThings 표준 Capability 중 Thermostat modes 는 '목욕' 이 없어서, Resume 을 선택하면 '목욕' 기능이 동작합니다.
