@@ -36,6 +36,16 @@ server {
 }
 </pre>
 
+아래와 같이 표시되면 reverse proxy 구성은 성공 입니다.
+<pre>
+$ telnet localhost 8989
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+^]
+telnet> q
+</pre>
+
 ## 2. DTH 설치
 SmartThings IDE 에서 DTH 를 설치 합니다.
 멀티룸 보일러는 메인컨트롤러에 해당되는 Master device 와 각방컨트롤러에 해당되는 Child device 로 나눠집니다.
