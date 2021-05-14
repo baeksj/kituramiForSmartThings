@@ -5,6 +5,7 @@ DTH for kiturami multiroom boiler in local http resverse proxy environment
 이 기능은 개인적으로 사용하기 위해 개발 한 내용으로, 동작의 정확성이 보장되지 않습니다.
 본 기능의 문제 혹은 KRB API 의 문제로 인해 예상치 못한 보일러 동작으로 피해를 입을 수 있습니다.
 이 기능의 사용으로 인한 결과적 책임은 모두 본인에게 있음을 인지하고 사용하시기 바랍니다.
+귀뚜라미 IOT 각방제어 시스템이 설치된 환경에서만 동작 합니다.
 
 ![image](https://user-images.githubusercontent.com/1823785/118262354-be6e1180-b4ef-11eb-9941-a6c5ac31cd41.png)
 
@@ -64,6 +65,15 @@ Device Handler 는 위에서 추가한 "Kiturami-multiroom-boiler" 를 선택 �
 
 ![image](https://user-images.githubusercontent.com/1823785/118262385-c9c13d00-b4ef-11eb-9c5e-8fb4e174d5fb.png)
 
+
+
+## 4. Device 환경 설정
+스마트폰 SmartThings 앱을 통해 추가된 보일러 Device 를 확인합니다.
+설정으로 이동하여 설정 값을 입력 합니다.
+
+![image](https://user-images.githubusercontent.com/1823785/118262404-d0e84b00-b4ef-11eb-850d-6ea6b337cac7.png)
+![image](https://user-images.githubusercontent.com/1823785/118262414-d47bd200-b4ef-11eb-908c-c21a6a05ded6.png)
+
 - IP: docker 가 실행되는 서버 IP
 
 - id: 귀뚜라미 앱 로그인 ID
@@ -71,17 +81,6 @@ Device Handler 는 위에서 추가한 "Kiturami-multiroom-boiler" 를 선택 �
 - password: 귀뚜라미 앱 로그인 패스워드
 
 - off/away: 앱 device off 시 전원종료/외출모드 선택
-
-## 4. Device 환경 설정
-스마트폼 SmartThings 앱을 통해 추가된 보일러 Device 를 확인합니다.
-설정으로 이동하여 설정 값을 입력 합니다.
-IP: Docker 가 실행되는 서버IP : Port ex> 192.168.0.100:8989
-userId: 귀뚜라미 원격 제어를 위한 앱 로그인 ID 를 입력 합니다.
-password: 귀뚜라미 원격 제어를 위한 앱 로그인 비밀번호 를 입력 합니다.
-away/off 선택: SmmartThings 를 통한 switch off action 발생시 보일러를 전원종료 할지 외출모드 를 할지 선택 합니다.
-
-![image](https://user-images.githubusercontent.com/1823785/118262404-d0e84b00-b4ef-11eb-850d-6ea6b337cac7.png)
-![image](https://user-images.githubusercontent.com/1823785/118262414-d47bd200-b4ef-11eb-908c-c21a6a05ded6.png)
 
 환경설정이 완료되면 메인컨트롤러에 연결된 각방컨트롤러가 Child device 로 자동 추가됩니다.
 
