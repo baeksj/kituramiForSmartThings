@@ -56,10 +56,7 @@ SmartThings IDE 에서 DTH 를 설치 합니다.
 
 ![image](https://user-images.githubusercontent.com/1823785/118264270-68e73400-b4f2-11eb-8e9f-aef0108d5af6.png)
 
-IP: docker 가 실행되는 서버 IP
-id: 귀뚜라미 앱 로그인 ID
-password: 귀뚜라미 앱 로그인 패스워드
-off/away: 앱 device off 시 전원종료/외출모드 선택
+
 
 ## 3. Device 추가
 SmartThings IDE 에서 Device 를 직접 추가 합니다.
@@ -67,7 +64,13 @@ Device Handler 는 위에서 추가한 "Kiturami-multiroom-boiler" 를 선택 �
 
 ![image](https://user-images.githubusercontent.com/1823785/118262385-c9c13d00-b4ef-11eb-9c5e-8fb4e174d5fb.png)
 
+- IP: docker 가 실행되는 서버 IP
 
+- id: 귀뚜라미 앱 로그인 ID
+
+- password: 귀뚜라미 앱 로그인 패스워드
+
+- off/away: 앱 device off 시 전원종료/외출모드 선택
 
 ## 4. Device 환경 설정
 스마트폼 SmartThings 앱을 통해 추가된 보일러 Device 를 확인합니다.
