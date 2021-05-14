@@ -18,6 +18,7 @@ This function is only tested by myself.
 
 아래의 코드를 참고하여 환경을 구성하세요
 `$ git clone https://github.com/baeksj/KituramiForSmartThings`
+
 `$ docker run -d --name nginx_proxy --net host -v ./KituramiForSmartThings/nginx_proxy:/etc/nginx/conf.d:z nginx`
 
 nginx proxy 는 아래 설정과 같이 `http://localhost:8989` 를 `https://igis.krb.co.kr` 로 Pass 합니다.
