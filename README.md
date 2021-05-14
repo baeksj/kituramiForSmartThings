@@ -20,14 +20,16 @@ This function is only tested by myself.
 nginx proxy 는 아래 설정과 같이 `http://localhost:8989` 를 `https://igis.krb.co.kr` 로 Pass 합니다.
 기본 포트 8989 는 변경해도 무방합니다.
 
-`server {
+<pre>
+server {
         listen 8989;
 
         location / {
                 proxy_ssl_server_name on;
                 proxy_pass https://igis.krb.co.kr;
         }
-}`
+}
+</pre>
 
 ## 2. DTH 설치
 SmartThings IDE 에서 DTH 를 설치 합니다.
