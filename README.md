@@ -56,6 +56,10 @@ SmartThings IDE 에서 DTH 를 설치 합니다.
 
 ![image](https://user-images.githubusercontent.com/1823785/118264270-68e73400-b4f2-11eb-8e9f-aef0108d5af6.png)
 
+IP: docker 가 실행되는 서버 IP
+id: 귀뚜라미 앱 로그인 ID
+password: 귀뚜라미 앱 로그인 패스워드
+off/away: 앱 device off 시 전원종료/외출모드 선택
 
 ## 3. Device 추가
 SmartThings IDE 에서 Device 를 직접 추가 합니다.
