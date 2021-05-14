@@ -1,7 +1,10 @@
 ## kituramiForSmartThings
 DTH for kiturami multiroom boiler in local http resverse proxy environment
 
-This function is only tested by myself.
+## 주의사항
+이 기능은 개인적으로 사용하기 위해 개발 한 내용으로, 동작의 정확성이 보장되지 않습니다.
+본 기능의 문제 혹은 KRB API 의 문제로 인해 예상치 못한 보일러 동작으로 피해를 입을 수 있습니다.
+이 기능의 사용으로 인한 결과적 책임은 모두 본인에게 있음을 인지하고 사용하시기 바랍니다.
 
 ![image](https://user-images.githubusercontent.com/1823785/118262354-be6e1180-b4ef-11eb-9941-a6c5ac31cd41.png)
 
@@ -50,6 +53,9 @@ telnet> q
 SmartThings IDE 에서 DTH 를 설치 합니다.
 멀티룸 보일러는 메인컨트롤러에 해당되는 Master device 와 각방컨트롤러에 해당되는 Child device 로 나눠집니다.
 두가지 DTH 를 모두 설치 합니다.
+
+![image](https://user-images.githubusercontent.com/1823785/118264270-68e73400-b4f2-11eb-8e9f-aef0108d5af6.png)
+
 
 ## 3. Device 추가
 SmartThings IDE 에서 Device 를 직접 추가 합니다.
