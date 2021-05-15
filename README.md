@@ -74,7 +74,7 @@ Device Handler 는 위에서 추가한 "Kiturami-multiroom-boiler" 를 선택 �
 설정으로 이동하여 설정 값을 입력 합니다.
 
 ![image](https://user-images.githubusercontent.com/1823785/118262404-d0e84b00-b4ef-11eb-850d-6ea6b337cac7.png)
-![image](https://user-images.githubusercontent.com/1823785/118348844-dbeeba00-b587-11eb-8fab-87caad938447.png)
+![image](https://user-images.githubusercontent.com/1823785/118349100-9206d380-b589-11eb-945f-b150f003eb2d.png)
 
 - KRB API 직접접속 여부선택 : 기본 Yes, Yes 선택시 SmartThings Cloud 서버에서 KRB API 서버에 직접 접속합니다.
 직접접속이 실패하는 경우 No 를 선택하고 아래의 Internal 서버 주소를 통해 Reverse proxy 경유 접속도 가능합니다.
