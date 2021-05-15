@@ -34,7 +34,7 @@ metadata {
 
     preferences {
         input "krbDirectYn", "enum", title: "Direct connnect to KRB API", description: "Yes for direct KRB API, No for internal proxy", options: ["Yes","No"], defaultValue: "Yes", required: true
-        input "krbAddress", "text", title: "KRB API address", description: "Internal proxy address as IP:PORT ", required: true
+        input "krbAddress", "text", title: "Internal API Reverse proxy", description: "Internal proxy address as IP:PORT ", required: true
         input "memberId", "text", title: "KRB user id", description: "Enter your kiturami id", required: true
         input "password", "password", title: "KRB password", description: "Enter your kiturami password ", required: true
         input "offMethod", "enum", title: "Mode on switch off", description: "Choose mode off/away on switch off", options: ["off", "away"], defaultValue: "away", required: true
