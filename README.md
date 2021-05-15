@@ -11,11 +11,13 @@ DTH for kiturami multiroom boiler in local http resverse proxy environment
 
 
 귀뚜라미 각방제어 시스템 보일러를 위한 SmartThings DTH 입니다.
-귀뚜라미 KRB API 는 SmartThings Cloud 를 통한 연결이 허용되지 않고 있는 관계로
-이 기능은 Local 환경의 Reverse proxy 를 경유하여 KRB API 에 접속 합니다.
 
+## 1. Reverse proxy 설정 (필수아님)
 
-## 1. Reverse proxy 설정 
+귀뚜라미의 SmartThings Cloud 서버로부터 KRB API 서버 접속이 불가능한 경우
+Local 서버에 구성된 Reverse proxy 를 경유 접속 하는 기능 입니다.
+설정에서 선택을 통해 KRB API 로 직접접속 Yes 선택 한 경우에는 필요 없는 설정 입니다.
+
 요구사항: docker 가 상시 실행될 수 있는 서버
 
 `/nginx_proxy/kiturami.conf` 파일을 통해 docker 환경의 nginx 서버를 구동
@@ -72,9 +74,12 @@ Device Handler 는 위에서 추가한 "Kiturami-multiroom-boiler" 를 선택 �
 설정으로 이동하여 설정 값을 입력 합니다.
 
 ![image](https://user-images.githubusercontent.com/1823785/118262404-d0e84b00-b4ef-11eb-850d-6ea6b337cac7.png)
-![image](https://user-images.githubusercontent.com/1823785/118262414-d47bd200-b4ef-11eb-908c-c21a6a05ded6.png)
+![image](https://user-images.githubusercontent.com/1823785/118348669-e197d000-b586-11eb-8404-8802d9bfaeed.png)
 
-- IP: docker 가 실행되는 서버 IP
+- KRB API 직접접속 여부선택 : 기본 Yes, Yes 선택시 SmartThings Cloud 서버에서 KRB API 서버에 직접 접속합니다.
+직접접속이 실패하는 경우 No 를 선택하고 아래의 Internal 서버 주소를 통해 Reverse proxy 경유 접속도 가능합니다.
+
+- IP: 귀뚜라미 API 직접 접속을 하지 않는 경우에 필요한 설정 입니다. docker 가 실행되는 서버 IP
 
 - id: 귀뚜라미 앱 로그인 ID
 
