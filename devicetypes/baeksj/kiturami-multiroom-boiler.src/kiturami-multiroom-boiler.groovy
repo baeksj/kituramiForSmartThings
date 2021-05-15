@@ -14,6 +14,7 @@
  *
  * Changes
  * 0.1.2021051401 Initial
+ * 0.2.2021051501 Add function to operate KRB API directly, and you can choose it in settings
  */
 
 import groovy.json.JsonSlurper
@@ -32,10 +33,11 @@ metadata {
     }
 
     preferences {
-        input "krbAddress", "text", title: "KRB API address", description: "Enter internal address as IP:PORT ", required: true
+        input "krbDirectYn", "enum", title: "Direct connnect to KRB API", description: "Yes for direct KRB API, No for internal proxy", options: ["Yes","No"], defaultValue: "Yes", required: true
+        input "krbAddress", "text", title: "KRB API address", description: "Internal proxy address as IP:PORT ", required: true
         input "memberId", "text", title: "KRB user id", description: "Enter your kiturami id", required: true
         input "password", "password", title: "KRB password", description: "Enter your kiturami password ", required: true
-        input "offMethod", "enum", title: "Choose mode off/away on switch off", options: ["off", "away"], required: true
+        input "offMethod", "enum", title: "Mode on switch off", description: "Choose mode off/away on switch off", options: ["off", "away"], defaultValue: "away", required: true
     }
 
     simulator {
@@ -75,7 +77,7 @@ def init(){
 def refresh() {
     log.debug "refresh()"
 
-    if(krbAddress && memberId){
+    if(memberId && password && (krbAddress || krbDirectYn == "Yes")){
 
         if(!state.authKey) {
             //in case not yet login
@@ -248,8 +250,8 @@ def executeKrbDeviceStatus() {
     executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
 }
 
-def executeKrbRealDeviceStatus(HubResponse hubResponse) {
-    def jsonObj = getJsonResponse(hubResponse)
+def executeKrbRealDeviceStatus(hubResponse, response=null) {
+    def jsonObj = getJsonResponse(hubResponse, response)
     log.debug "isAlive: ${jsonObj}"
 
     //master device
@@ -260,16 +262,16 @@ def executeKrbRealDeviceStatus(HubResponse hubResponse) {
     }
 }
 
-def controlCallback(HubResponse hubResponse) {
+def controlCallback(hubResponse, response=null) {
     //wait for a sec for KRB device status sync
-    def jsonObj = getJsonResponse(hubResponse)
+    def jsonObj = getJsonResponse(hubResponse, response)
     log.debug "Control result: ${jsonObj}"
     if(jsonObj.successFlag) executeKrbDeviceStatus()
 }
 
-def deviceStatusCallback(HubResponse hubResponse) {
+def deviceStatusCallback(hubResponse, response=null) {
     try {
-        def jsonObj = getJsonResponse(hubResponse)
+        def jsonObj = getJsonResponse(hubResponse, response)
 
         if(jsonObj) {
 
@@ -304,19 +306,19 @@ def deviceStatusCallback(HubResponse hubResponse) {
     }
 }
 
-def loginCallback(HubResponse hubResponse) {
-    state.authKey = getJsonResponse(hubResponse).authKey
+def loginCallback(hubResponse, response=null) {
+    state.authKey = getJsonResponse(hubResponse, response).authKey
     if(state.authKey) executeAPICommand(operation.deviceInfo, deviceInfoCallback);
 }
 
-def deviceInfoCallback(HubResponse hubResponse) {
-    state.nodeId = getJsonResponse(hubResponse).memberDeviceList[0]?.nodeId
+def deviceInfoCallback(hubResponse, response=null) {
+    state.nodeId = getJsonResponse(hubResponse, response).memberDeviceList[0]?.nodeId
     if(!state.slaveId) executeKrbDeviceList()
 }
 
-def deviceListCallback(HubResponse hubResponse) {
+def deviceListCallback(hubResponse, response=null) {
     try {
-        def jsonObj = getJsonResponse(hubResponse)
+        def jsonObj = getJsonResponse(hubResponse, response)
 
         for(slave in jsonObj.deviceSlaveInfo) {
             //01 is master
@@ -375,12 +377,18 @@ def getSHA256EncodeString(str) {
     hexString
 }
 
-def getJsonResponse(HubResponse hubResponse) {
-    def msg = parseLanMessage(hubResponse.description)
-    new JsonSlurper().parseText(msg.body)
+def getJsonResponse(hubResponse, response) {
+    response ? response.data : new JsonSlurper().parseText(parseLanMessage(hubResponse.description).body)
 }
 
-def executeAPICommand(operation, _callback = null) {
+def executeAPICommand(operation, _callback=null) {
+    if(krbDirectYn == null || krbDirectYn == "Yes")
+        executeAPIDirect(operation, _callback)
+    else
+        executeAPIViaProxy(operation, _callback)
+}
+
+def executeAPIViaProxy(operation, _callback = null) {
     try {
         def options = [
                 "method": "POST",
@@ -398,5 +406,19 @@ def executeAPICommand(operation, _callback = null) {
 
     } catch(e) {
         log.error e
+    }
+}
+
+def executeAPIDirect(operation, _callback = null) {
+    def options = [
+            uri: "https://igis.krb.co.kr",
+            path: operation.command,
+            contentType: "application/json; charset=UTF-8",
+            headers: [ "AUTH-KEY": state.authKey ],
+            body: operation.body
+    ]
+
+    httpPostJson(options) {
+        if(_callback) "${_callback}"(null, it)
     }
 }
