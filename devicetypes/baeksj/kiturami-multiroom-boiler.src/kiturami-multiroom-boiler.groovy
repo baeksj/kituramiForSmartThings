@@ -71,7 +71,7 @@ def init(){
     sendEvent(name: "switch", value: "off")
     sendEvent(name: "supportedThermostatModes", value: ["off","away","heat","resume"])
     refresh()
-    runEvery10Minutes(refresh)
+    runEvery5Minutes(refresh)
 }
 
 def refresh() {
