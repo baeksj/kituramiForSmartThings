@@ -87,7 +87,8 @@ def refresh() {
             executeKrbDeviceList()
         } else {
             //refresh device status
-            executeKrbDeviceStatus()
+            //executeKrbDeviceStatus()
+            executeKrbRealDeviceStatus(null, null)
         }
 
         sendEvent(name: "lastCheckin", value: (new Date().format("yyyy-MM-dd HH:mm:ss", location.timeZone)), displayed: false)
@@ -250,16 +251,13 @@ def executeKrbDeviceList() {
 }
 
 def executeKrbDeviceStatus() {
-    //executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
     log.debug "wait for run executeKrbRealDeviceStatus"
-//    runIn(2, executeKrbRealDeviceStatus)
-    executeKrbRealDeviceStatus()
+    executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
 }
 
-//def executeKrbRealDeviceStatus(hubResponse, response=null) {
+def executeKrbRealDeviceStatus(hubResponse, response=null) {
 //    def jsonObj = getJsonResponse(hubResponse, response)
 //    log.debug "isAlive: ${jsonObj}"
-def executeKrbRealDeviceStatus() {
 
     log.debug "executeKrbRealDeviceStatus"
 
