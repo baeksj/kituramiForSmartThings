@@ -71,7 +71,7 @@ def init(){
     sendEvent(name: "switch", value: "off")
     sendEvent(name: "supportedThermostatModes", value: ["off","away","heat","resume"])
     refresh()
-    runEvery5Minutes(refresh)
+    runEvery1Minute(refresh)
 }
 
 def refresh() {
@@ -139,7 +139,10 @@ def setThermostatMode(mode, dni=null) {
     //"off","away","heat","resume"
     switch(mode) {
         case "off":
-            executeKrbOff(slaveId)
+            if(offMethod == "off")
+                executeKrbOff(slaveId)
+            else
+                executeKrbAway(slaveId)
             break;
         case "away":
             executeKrbAway(slaveId)
@@ -248,6 +251,7 @@ def executeKrbDeviceList() {
 
 def executeKrbDeviceStatus() {
     //executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
+    log.debug "wait for run executeKrbRealDeviceStatus"
     runIn(2, executeKrbRealDeviceStatus)
 }
 
@@ -255,6 +259,8 @@ def executeKrbDeviceStatus() {
 //    def jsonObj = getJsonResponse(hubResponse, response)
 //    log.debug "isAlive: ${jsonObj}"
 def executeKrbRealDeviceStatus() {
+
+    log.debug "executeKrbRealDeviceStatus"
 
     //master device
     executeAPICommand(getOperation([slaveId: state.slaveId]).deviceModeInfo, deviceStatusCallback)
