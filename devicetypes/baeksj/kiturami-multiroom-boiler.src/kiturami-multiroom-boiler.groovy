@@ -87,8 +87,7 @@ def refresh() {
             executeKrbDeviceList()
         } else {
             //refresh device status
-            //executeKrbDeviceStatus()
-            executeKrbRealDeviceStatus(null, null)
+            executeKrbIsAliveNormal()
         }
 
         sendEvent(name: "lastCheckin", value: (new Date().format("yyyy-MM-dd HH:mm:ss", location.timeZone)), displayed: false)
@@ -195,7 +194,10 @@ def getOperation(map = null) {
                     body: """{"nodeIds": ["${state.nodeId}"], "messageId": "${map?.messageId}", "messageBody": "${map?.messageBody}"}"""
             ],
             isAliveNormal: [
-                    //command: "/api/device/isAliveNormal",
+                    command: "/api/device/isAliveNormal",
+                    body: """{"nodeId": "${state.nodeId}","parentId": "1"}"""
+            ],
+            isAlive: [
                     command: "/api/device/isAlive",
                     body: """{"nodeId": "${state.nodeId}","parentId": "1"}"""
             ]
@@ -251,7 +253,12 @@ def executeKrbDeviceList() {
     executeAPICommand(operation.deviceList, deviceListCallback)
 }
 
-def executeKrbDeviceStatus() {
+def executeKrbIsAlive() {
+    log.debug "run isAlive"
+    executeAPICommand(operation.isAlive, executeKrbRealDeviceStatus)
+}
+
+def executeKrbIsAliveNormal() {
     log.debug "run isAliveNormal"
     executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
 }
@@ -270,7 +277,7 @@ def controlCallback(hubResponse, response=null) {
     //wait for a sec for KRB device status sync
     def jsonObj = getJsonResponse(hubResponse, response)
     log.debug "Control result: ${jsonObj}"
-    if(jsonObj.successFlag) executeKrbDeviceStatus()
+    if(jsonObj.successFlag) executeKrbIsAlive()
 }
 
 def deviceStatusCallback(hubResponse, response=null) {
