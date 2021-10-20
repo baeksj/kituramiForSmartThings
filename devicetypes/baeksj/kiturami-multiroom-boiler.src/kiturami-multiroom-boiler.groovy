@@ -195,7 +195,8 @@ def getOperation(map = null) {
                     body: """{"nodeIds": ["${state.nodeId}"], "messageId": "${map?.messageId}", "messageBody": "${map?.messageBody}"}"""
             ],
             isAliveNormal: [
-                    command: "/api/device/isAliveNormal",
+                    //command: "/api/device/isAliveNormal",
+                    command: "/api/device/isAlive",
                     body: """{"nodeId": "${state.nodeId}","parentId": "1"}"""
             ]
     ]
