@@ -251,9 +251,10 @@ def executeKrbDeviceStatus() {
     runIn(2, executeKrbRealDeviceStatus)
 }
 
-def executeKrbRealDeviceStatus(hubResponse, response=null) {
-    def jsonObj = getJsonResponse(hubResponse, response)
-    log.debug "isAlive: ${jsonObj}"
+//def executeKrbRealDeviceStatus(hubResponse, response=null) {
+//    def jsonObj = getJsonResponse(hubResponse, response)
+//    log.debug "isAlive: ${jsonObj}"
+def executeKrbRealDeviceStatus() {
 
     //master device
     executeAPICommand(getOperation([slaveId: state.slaveId]).deviceModeInfo, deviceStatusCallback)
