@@ -188,7 +188,7 @@ def getOperation(map = null) {
             ],
             deviceModeInfo: [
                     command: "/api/device/getDeviceModeInfo",
-                    body: """{"nodeId": "${state.nodeId}", "actionId":"0102", "parentId":"1", "slaveId": "${map?.slaveId}"}"""
+                    body: """{"nodeId": "${state.nodeId}", "actionId":"0106", "parentId":"1", "slaveId": "${map?.slaveId}"}"""
             ],
             deviceControl: [
                     command: "/api/device/deviceControl",
@@ -251,16 +251,12 @@ def executeKrbDeviceList() {
 }
 
 def executeKrbDeviceStatus() {
-    log.debug "wait for run executeKrbRealDeviceStatus"
+    log.debug "run isAliveNormal"
     executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
 }
 
 def executeKrbRealDeviceStatus(hubResponse, response=null) {
-//    def jsonObj = getJsonResponse(hubResponse, response)
-//    log.debug "isAlive: ${jsonObj}"
-
-    log.debug "executeKrbRealDeviceStatus"
-
+    log.debug "run each deviceModeInfo"
     //master device
     executeAPICommand(getOperation([slaveId: state.slaveId]).deviceModeInfo, deviceStatusCallback)
     //child devices
