@@ -188,7 +188,7 @@ def getOperation(map = null) {
             ],
             deviceModeInfo: [
                     command: "/api/device/getDeviceModeInfo",
-                    body: """{"nodeId": "${state.nodeId}", "actionId":"0106", "parentId":"1", "slaveId": "${map?.slaveId}"}"""
+                    body: """{"nodeId": "${state.nodeId}", "actionId":"0102", "parentId":"1", "slaveId": "${map?.slaveId}"}"""
             ],
             deviceControl: [
                     command: "/api/device/deviceControl",
