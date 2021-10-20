@@ -247,7 +247,8 @@ def executeKrbDeviceList() {
 }
 
 def executeKrbDeviceStatus() {
-    executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
+    //executeAPICommand(operation.isAliveNormal, executeKrbRealDeviceStatus)
+    runIn(2, executeKrbRealDeviceStatus)
 }
 
 def executeKrbRealDeviceStatus(hubResponse, response=null) {

@@ -48,27 +48,27 @@ def updated() {
 }
 
 def on() {
-    log.debug "on child ${device.deviceNetworkId}"
+//    log.debug "on child ${device.deviceNetworkId}"
     parent.on(device.deviceNetworkId)
 }
 
 def off() {
-    log.debug "off child ${device.deviceNetworkId}"
+//    log.debug "off child ${device.deviceNetworkId}"
     parent.off(device.deviceNetworkId)
 }
 
 def setHeatingSetpoint(targetTempCelcius) {
-    log.debug "setHeatingSetpoint child ${targetTempCelcius}, ${device.deviceNetworkId}"
+//    log.debug "setHeatingSetpoint child ${targetTempCelcius}, ${device.deviceNetworkId}"
     parent.setHeatingSetpoint(targetTempCelcius, device.deviceNetworkId);
 }
 
 def heat() {
-    log.debug "heat child ${device.deviceNetworkId}"
+//    log.debug "heat child ${device.deviceNetworkId}"
     parent.heat(device.deviceNetworkId)
 }
 
 def setThermostatMode(mode) {
-    log.debug "setThermostatMode child ${mode} ${device.deviceNetworkId}"
+//    log.debug "setThermostatMode child ${mode} ${device.deviceNetworkId}"
     parent.setThermostatMode(mode, device.deviceNetworkId)
 }
 
