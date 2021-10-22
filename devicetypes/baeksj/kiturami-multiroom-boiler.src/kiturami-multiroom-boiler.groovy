@@ -28,8 +28,6 @@ metadata {
         capability "Thermostat Heating Setpoint"
         capability "Temperature Measurement"
         capability "Sensor"
-
-        command "refresh"
     }
 
     preferences {
