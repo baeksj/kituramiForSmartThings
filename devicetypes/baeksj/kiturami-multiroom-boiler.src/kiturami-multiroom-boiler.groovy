@@ -69,7 +69,7 @@ def init(){
     log.debug "init"
     state.targetTemp = [:]
     sendEvent(name: "switch", value: "off")
-    sendEvent(name: "supportedThermostatModes", value: ["off","away","heat","resume"])
+    sendEvent(name: "supportedThermostatModes", value: ["off","away","heat","resume","schedule"])
     refresh()
     runEvery1Minute(refresh)
 }
@@ -152,6 +152,9 @@ def setThermostatMode(mode, dni=null) {
             break;
         case "resume":
             executeKrbBath()
+            break;
+        case "schedule":
+            executeKrbSchedule(slaveId)
             break;
     }
 }
@@ -245,6 +248,12 @@ def executeKrbAway(slaveId) {
     executeAPICommand(getOperation(controlMessage).deviceControl, controlCallback)
 }
 
+def executeKrbSchedule(slaveId) {
+    def controlMessage = [messageId: "0108", messageBody: "${slaveId}0000000001"]
+    log.debug "Schedule: ${controlMessage}"
+    executeAPICommand(getOperation(controlMessage).deviceControl, controlCallback)
+}
+
 def executeKrbPreprocess() {
     executeAPICommand(operation.login, loginCallback)
 }
@@ -309,6 +318,10 @@ def deviceStatusCallback(hubResponse, response=null) {
                 case "0106":
                     sendDeviceEvent([name: "switch", value: "off", displayed: false], jsonObj.slaveId)
                     sendDeviceEvent([name: "thermostatMode", value: "away", displayed: false], jsonObj.slaveId)
+                    break
+                case "0108":
+                    sendDeviceEvent([name: "switch", value: "on", displayed: false], jsonObj.slaveId)
+                    sendDeviceEvent([name: "thermostatMode", value: "schedule", displayed: false], jsonObj.slaveId)
                     break
             }
         }
