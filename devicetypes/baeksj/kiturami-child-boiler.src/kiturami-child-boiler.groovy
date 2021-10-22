@@ -35,7 +35,7 @@ def parse(String description) {
 
 def installed() {
     log.debug "installed() child ${device.deviceNetworkId}"
-    sendEvent(name: "supportedThermostatModes", value: ["off","away","heat","resume"])
+    sendEvent(name: "supportedThermostatModes", value: ["off","away","heat","resume","schedule"])
 }
 
 def uninstalled() {
