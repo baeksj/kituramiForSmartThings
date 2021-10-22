@@ -96,7 +96,10 @@ def refresh() {
 
 /* Functions for capability */
 
-def on(dni=null) {
+def on() {
+    onForDevice(null)
+}
+def onForDevice(dni=null) {
     log.debug "on: ${dni}"
 
     def slaveId = getSlaveId(dni)
@@ -104,7 +107,10 @@ def on(dni=null) {
     executeKrbHeat(slaveId)
 }
 
-def off(dni=null) {
+def off() {
+    offForDevice(null)
+}
+def offForDevice(dni=null) {
     log.debug "off: ${dni}"
 
     def slaveId = getSlaveId(dni)
@@ -115,21 +121,30 @@ def off(dni=null) {
         executeKrbAway(slaveId)
 }
 
-def setHeatingSetpoint(targetTempCelcius, dni=null) {
+def setHeatingSetpoint(targetTempCelcius) {
+    setHeatingSetpointForDevice(targetTempCelcius, null)
+}
+def setHeatingSetpointForDevice(targetTempCelcius, dni=null) {
     log.debug "setHeatingSetpoint: ${targetTempCelcius}, ${dni}"
 
     def slaveId = getSlaveId(dni)
     executeKrbHeat(slaveId, targetTempCelcius);
 }
 
-def heat(dni=null) {
+def heat() {
+    heatForDevice(null)
+}
+def heatForDevice(dni=null) {
     log.debug "heat ${dni}"
 
     def slaveId = getSlaveId(dni)
     executeKrbHeat(slaveId);
 }
 
-def setThermostatMode(mode, dni=null) {
+def setThermostatMode(mode) {
+    setThermostatModeForDevice(mode, null)
+}
+def setThermostatModeForDevice(mode, dni=null) {
     log.debug "setThermostatMode ${mode} ${dni}"
 
     def slaveId = getSlaveId(dni)

@@ -48,28 +48,23 @@ def updated() {
 }
 
 def on() {
-//    log.debug "on child ${device.deviceNetworkId}"
-    parent.on(device.deviceNetworkId)
+    parent.onForDevice(device.deviceNetworkId)
 }
 
 def off() {
-//    log.debug "off child ${device.deviceNetworkId}"
-    parent.off(device.deviceNetworkId)
+    parent.offForDevice(device.deviceNetworkId)
 }
 
 def setHeatingSetpoint(targetTempCelcius) {
-//    log.debug "setHeatingSetpoint child ${targetTempCelcius}, ${device.deviceNetworkId}"
-    parent.setHeatingSetpoint(targetTempCelcius, device.deviceNetworkId);
+    parent.setHeatingSetpointForDevice(targetTempCelcius, device.deviceNetworkId);
 }
 
 def heat() {
-//    log.debug "heat child ${device.deviceNetworkId}"
-    parent.heat(device.deviceNetworkId)
+    parent.heatForDevice(device.deviceNetworkId)
 }
 
 def setThermostatMode(mode) {
-//    log.debug "setThermostatMode child ${mode} ${device.deviceNetworkId}"
-    parent.setThermostatMode(mode, device.deviceNetworkId)
+    parent.setThermostatModeForDevice(mode, device.deviceNetworkId)
 }
 
 /* Unused capability functions */
