@@ -51,8 +51,8 @@ Device Handler 는 위에서 추가한 "Kiturami-multiroom-boiler" 를 선택 �
 - 귀뚜라미 KRB API 는 연속 메시지가 다수 발생하면 일시적으로 동작이 멈추는 현상이 발생 할 수 있습니다.
 - 가정내 제어기를 통해 제어한 결과는 SmartThing 에 최대 1분 내 반영 됩니다.
 - 모드
-  Away : 외출모드
-  난방/Heat : 난방모드
-  꺼짐/Off : 꺼짐
-  Resume : 목욕모드
+  Away : 외출모드,
+  난방/Heat : 난방모드,
+  꺼짐/Off : 꺼짐,
+  Resume : 목욕모드,
   Schedule : 예약모드
