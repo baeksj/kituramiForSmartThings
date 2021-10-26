@@ -262,7 +262,7 @@ def executeKrbAway(slaveId) {
 }
 
 def executeKrbSchedule(slaveId) {
-    def controlMessage = [messageId: "0108", messageBody: "${slaveId}000000001E"]
+    def controlMessage = [messageId: "0108", messageBody: "${slaveId}000000021E"]
     log.debug "Schedule: ${controlMessage}"
     executeAPICommand(getOperation(controlMessage).deviceControl, controlCallback)
 }
